@@ -12,8 +12,8 @@ function App() {
 
   const handleToggleTask = (id) => {
     setTasks((prevTasks) =>
-    prevTasks.map((task) =>
-    task.id === id ? { ...task, complete: !task.complete } : task
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, complete: !task.complete } : task
     )
   );
   };
@@ -28,7 +28,7 @@ function App() {
       <Form onAddTask={onAddTask} />
       <Tasklist
         tasks={tasks}
-        handleToggleTask={handleToggleTask}
+        onToggleTask={handleToggleTask}
         onDeleteTask={onDeleteTask}
       />
       
