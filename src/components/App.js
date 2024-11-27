@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Form from "./Form";
 import Tasklist from "./Task";
 
-
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -10,12 +9,12 @@ function App() {
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
-  const handleToggleTask = (id) => {
+  const onToggleTask = (id) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === id ? { ...task, complete: !task.complete } : task
-    )
-  );
+      )
+    );
   };
 
   const onDeleteTask = (id) => {
@@ -28,10 +27,9 @@ function App() {
       <Form onAddTask={onAddTask} />
       <Tasklist
         tasks={tasks}
-        onToggleTask={handleToggleTask}
+        onToggleTask={onToggleTask}  
         onDeleteTask={onDeleteTask}
       />
-      
     </div>
   );
 }

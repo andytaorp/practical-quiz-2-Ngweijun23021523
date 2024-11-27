@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Task({ task, onToggleTask, onDeleteTask }) {
-  const taskCompleted = {
-    textDecoration: task.complete ? "line-through" : "none",
+export default function Form({ onAddTask }) {
+  const [description, setDescription] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTask = {
+      id: Math.floor(Math.random() * 10000),
+      description,
+      complete: false,
+    };
+    onAddTask(newTask);
+    setDescription("");
   };
 
   return (
-    <li style={taskCompleted}>
-      <span>{task.description}</span>
+    <form className="add-form" onSubmit={handleSubmit}>
+      <h3>What is the new task</h3>
       <input
-        type="checkbox"
-        checked={task.complete}
-        onChange={() => onToggleTask(task.id)}  
-      />
-      <button onClick={() => onDeleteTask(task.id)} className="delete-button">
-        Delete
-      </button>
-    </li>
-  );
-}
+        type="text"
+        placeholder="Item"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />      
+      <button type="submit">Add</button>
 
-export default Task;
+
+    </form>
+  )
+    
+  
+}
