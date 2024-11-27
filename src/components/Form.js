@@ -5,6 +5,9 @@ export default function Form({ onAddTask }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!description.trim()) {
+      return;  
+    }
     const newTask = {
       id: Math.floor(Math.random() * 10000),
       description,
@@ -16,7 +19,7 @@ export default function Form({ onAddTask }) {
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h3>What is the new task</h3>
+      <h3>New Task</h3>
       <input
         type="text"
         placeholder="Item"
